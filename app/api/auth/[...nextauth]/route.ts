@@ -30,6 +30,9 @@ export const authOptions: AuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid credentials');
         }
+        if ((credentials as { password: string }).password.length < 8) {
+          throw new Error('Password must be at least 8 characters long');
+        }
 
         const user = await prisma.user.findUnique({
           where: {
