@@ -35,12 +35,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     }
   } = useForm<FieldValues>({
     defaultValues: {
-      name: currentUser?.name,
-      image: currentUser?.image
+      name: (currentUser as User)?.name,
+      image: (currentUser as User)?.image
     }
   });
 
   const image = watch('image');
+
 
   const handleUpload = (result: any) => {
     setValue('image', result.info.secure_url, { 
